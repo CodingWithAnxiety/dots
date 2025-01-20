@@ -1,0 +1,62 @@
+# Keybinds
+bindkey "^[[1;5C"    forward-word # Ctrl+Right
+bindkey "^[[1;5D"   backward-word # Ctrl+Left
+bindkey ";2A"          up-history # Shift+Up
+bindkey ";2B"        down-history # Shift+Down
+bindkey "^[[5~"        up-history # PageUp
+bindkey "^[[6~"      down-history # PageDown
+
+# 1st found function will return the first found command in a group
+_1st_found() {
+    for cmd in "$@"; do
+        if type "$cmd" &>/dev/null; then
+            printf "%s" "${cmd}"
+            break
+        fi
+    done
+}
+
+# Path variables
+export ZDIR="${HOME}/.zsh"
+
+export PAGER=$(_1st_found most less more)
+export EDITOR=$(_1st_found kate code nano)
+
+export NVM_DIR="${HOME}/.nvm"
+
+for file in "${NVM_DIR}/nvm.sh" \
+            "${NVM_DIR}/bash_completion" \
+            "${ZDIR}/theme.zsh" \
+            "${ZDIR}/aliases.zsh" \
+            "${ZDIR}/set_history.zsh" \
+            "${ZDIR}/zinit.zsh" \
+            "${ZDIR}/completions.zsh" \
+            "${ZDIR}/command-not-found.zsh"\
+            "${ZDIR}/nvm.zsh"
+do
+    [ -s "${file}" ] && source "${file}"
+done
+
+# Set options
+setopt interactive_comments extended_glob autocd complete_aliases
+
+auto-ls () { ls; }
+[[ ${chpwd_functions[(r)auto-ls]} == auto-ls ]] || chpwd_functions=( auto-ls $chpwd_functions )
+
+# Run manpage on Esc+h
+autoload -Uz run-help
+autoload -Uz run-help-git
+autoload -Uz run-help-sudo
+bindkey '^[h' run-help  # Esc+h
+
+# Choose binary in $PATH with fzf
+insert_binary_from_path() {
+    cmd=$(print -rl -- ${(ko)commands} | fzf --height 40% --layout=reverse)
+    LBUFFER="${LBUFFER}${cmd}"
+    zle redisplay
+}
+zle -N insert_binary_from_path
+bindkey '^[d' insert_binary_from_path  # Alt+d
+
+
+unset -f _1st_found
