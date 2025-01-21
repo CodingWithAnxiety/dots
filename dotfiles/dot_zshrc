@@ -35,7 +35,7 @@ for file in "${ZDIR}/theme.zsh" \
             "${ZDIR}/zinit.zsh" \
             "${ZDIR}/completions.zsh" \
             "${ZDIR}/command-not-found.zsh"\
-            "${ZDIR}/nvm.zsh"
+            "${ZDIR}/gpg.zsh"
 do
     [ -s "${file}" ] && source "${file}"
 done
