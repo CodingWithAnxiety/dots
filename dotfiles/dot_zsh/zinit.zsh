@@ -62,9 +62,7 @@ export ZSH_AUTOSUGGEST_USE_ASYNC=1
 export ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 
 # NVM plugin code:
-export NVM_LAZY_LOAD=true
-export NVM_AUTO_USE=true
-turbo0; zload lukechilds/zsh-nvm
+turbo0; zload dominik-schwabe/zsh-fnm
 
 
 #################################################################

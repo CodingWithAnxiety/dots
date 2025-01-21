@@ -20,13 +20,16 @@ _1st_found() {
 export ZDIR="${HOME}/.zsh"
 
 export PAGER=$(_1st_found most less more)
-export EDITOR=$(_1st_found kate code nano)
+export EDITOR=$(_1st_found nano kate code)
 
-export NVM_DIR="${HOME}/.nvm"
+# Initialize Zsh completion system
+autoload -U compinit
+compinit
 
-for file in "${NVM_DIR}/nvm.sh" \
-            "${NVM_DIR}/bash_completion" \
-            "${ZDIR}/theme.zsh" \
+
+# export NVM_DIR="${HOME}/.nvm"
+
+for file in "${ZDIR}/theme.zsh" \
             "${ZDIR}/aliases.zsh" \
             "${ZDIR}/set_history.zsh" \
             "${ZDIR}/zinit.zsh" \

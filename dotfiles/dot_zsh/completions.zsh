@@ -3,6 +3,7 @@
 # not all options (see git [TAB])
 
 # additional completions
+
 compdef _gnu_generic tr lsb_release
 
 # Suggestions descriptions.
