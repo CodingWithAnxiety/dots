@@ -8,7 +8,7 @@ auto-capitalize-title=true
 [user]
 name=Sylvia Roselie
 email=rose@rosely.me
-	signingkey = DB8242A424020648
+signingkey=DB8242A424020648
 [init]
 defaultBranch=main
 [pull]
@@ -17,10 +17,10 @@ rebase=false
 gpgSign=true
 template=/home/roselie/.gitmessage
 [credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+helper=
+helper=!/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+helper=
+helper=!/usr/bin/gh auth git-credential
 [maintenance]
-	repo = /home/roselie/Shell/Repos/znap
+repo=/home/roselie/Shell/Repos/znap

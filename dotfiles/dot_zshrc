@@ -5,7 +5,9 @@ bindkey ";2A"          up-history # Shift+Up
 bindkey ";2B"        down-history # Shift+Down
 bindkey "^[[5~"        up-history # PageUp
 bindkey "^[[6~"      down-history # PageDown
-
+bindkey "^[[3~"       delete-char
+bindkey "^[[3;5~" 	kill-word
+bindkey "^H"   backward-kill-word
 # 1st found function will return the first found command in a group
 _1st_found() {
     for cmd in "$@"; do
@@ -40,6 +42,14 @@ do
     [ -s "${file}" ] && source "${file}"
 done
 
+FNM_PATH="/home/roselie/.fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/roselie/.fnm:$PATH"
+  eval "`fnm env`"
+fi
+
+
+
 # Set options
 setopt interactive_comments extended_glob autocd complete_aliases
 
@@ -63,3 +73,11 @@ bindkey '^[d' insert_binary_from_path  # Alt+d
 
 
 unset -f _1st_found
+
+# pnpm
+export PNPM_HOME="/home/roselie/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

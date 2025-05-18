@@ -26,6 +26,8 @@ config.colors = {
 	selection_fg = 'black',
 }
 
+
+
 config.window_background_opacity = 0.75
 
 keybinds.apply_to_config(config)
