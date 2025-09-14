@@ -42,9 +42,9 @@ do
     [ -s "${file}" ] && source "${file}"
 done
 
-FNM_PATH="/home/roselie/.fnm"
+FNM_PATH="${HOME}/.fnm"
 if [ -d "$FNM_PATH" ]; then
-  export PATH="/home/roselie/.fnm:$PATH"
+  export PATH="${HOME}/.fnm:$PATH"
   eval "`fnm env`"
 fi
 
@@ -75,7 +75,7 @@ bindkey '^[d' insert_binary_from_path  # Alt+d
 unset -f _1st_found
 
 # pnpm
-export PNPM_HOME="/home/roselie/.local/share/pnpm"
+export PNPM_HOME="${HOME}/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
